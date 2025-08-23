@@ -74,8 +74,32 @@ class LinkedList {
         head = prevNode;
     }
 
-    boolean isCyclePresent() {
-        return false;
+    LinkedListNode isCyclePresent() {
+        LinkedListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+
+            fast = fast.next;
+            fast = fast.next;
+
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        if (slow != fast) {
+            return null;
+        }
+
+        LinkedListNode ptr1 = head;
+        LinkedListNode ptr2 = slow;
+
+        while (ptr1 != ptr2) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+
+        return ptr1;
     }
 }
 
@@ -149,6 +173,11 @@ public class Main {
 
         node80.next = node40;
 
-        linkedList.printLinkedList();
+        LinkedListNode cycleNode = linkedList.isCyclePresent();
+        if (cycleNode != null) {
+            System.out.println("Yes cycle detected" + cycleNode.val);
+        } else {
+            System.out.println("Cycle is not present");
+        }
     }
 }
