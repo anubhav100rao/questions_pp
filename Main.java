@@ -73,6 +73,10 @@ class LinkedList {
 
         head = prevNode;
     }
+
+    boolean isCyclePresent() {
+        return false;
+    }
 }
 
 class ListNode {
