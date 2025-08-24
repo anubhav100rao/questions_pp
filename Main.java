@@ -121,6 +121,7 @@ class ListNode {
 }
 
 class Solution {
+
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode head = null;
         ListNode tail = null;
@@ -156,6 +157,25 @@ class Solution {
 }
 
 public class Main {
+    static LinkedListNode findIntersection(LinkedList l1, LinkedList l2) {
+        HashMap<LinkedListNode, Boolean> seen = new HashMap<>();
+
+        LinkedListNode temp = l1.head;
+        while (temp != null) {
+            seen.put(temp, true);
+            temp = temp.next;
+        }
+
+        temp = l2.head;
+
+        while (temp != null) {
+            if (seen.containsKey(temp)) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
