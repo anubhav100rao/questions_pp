@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.h": "cpp",
+        "vector": "cpp",
+        "queue": "cpp"
+    }
+}

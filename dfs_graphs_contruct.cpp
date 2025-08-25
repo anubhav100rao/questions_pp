@@ -12,6 +12,20 @@ void dfs(int node, vector<vector<int>> &adjacency_list, vector<bool> &visited) {
     }
 }
 
+void is_cycle_exist(int node, vector<vector<int>> &adjacency_list, vector<bool> &visited, int parent) {
+    visited[node] = true;
+    cout << node << " ";
+
+    for(int child: adjacency_list[node]) {
+        if(visited[child] == false) {
+            is_cycle_exist(child, adjacency_list, visited, node);
+        } else if(child != parent) {
+            cout << "cycle detected -- ";
+        }
+    }
+
+}
+
 signed main() {
     int nodes = 7, edges_count = 7;
     vector<vector<int>> adjacency_list = {
@@ -40,6 +54,14 @@ signed main() {
     cout << "\n";
 
     cout << "number of connected components = " << connected_components << "\n";
+
+
+    visited = vector<bool>(nodes + 1, false);
+    for(int i = 1; i <= nodes; i++) {
+        if(!visited[i]) {
+            is_cycle_exist(i, adjacency_list, visited, 0);
+        }
+    }
     
  
     return 0;
